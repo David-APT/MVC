@@ -1,0 +1,22 @@
+1.install-package entityframework
+2.install-package bootstrap
+3.install-package jQuery
+
+4.enable-migrations
+5.add-migration <Name>
+6.update-database
+
+
+ <authentication mode="Forms">
+      <forms loginUrl="Login/Login" ></forms>
+    </authentication>
+
+<roleManager defaultProvider="david" enabled="true">
+      <providers>
+        <clear/>
+        <add name="david" type="NEWWEB.site.rolesite"/>
+      </providers>
+    </roleManager>
+
+PAGEDLIST
+7. install-package pagedlist.mvc -version 4.5.0

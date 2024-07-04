@@ -1,0 +1,35 @@
+﻿@model Bizom.Models.product
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>PRODUCTCREATION</title>
+</head>
+<body>
+    <div class="container w-50 ">
+        @using (@Html.BeginForm("PRODUCTCREATION", "PRODUCTCREATION", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        @Html.LabelFor(m => m.PRODUCT_BRAND)<br />
+        @Html.DropDownListFor(m => m.PRODUCT_BRAND, new SelectList(Enum.GetValues(typeof(Bizom.Models.brand))), "-SELECT-")<hr />
+        @Html.LabelFor(m => m.PRODUCT_NAME)<br />
+        @Html.TextBoxFor(m => m.PRODUCT_NAME, new { @class = "form-conrol" })<hr />
+        @Html.LabelFor(m => m.PRODUCT_MAR)<br />
+        @Html.TextBoxFor(m => m.PRODUCT_MAR, new { @class = "form-conrol" })<hr />
+        @Html.LabelFor(m => m.PRODUCT_MARGIN)<br />
+        @Html.TextBoxFor(m => m.PRODUCT_MARGIN, new { @class = "form-conrol" })<hr />
+        @Html.LabelFor(m => m.PRODUCT_CASE)<br />
+        @Html.TextBoxFor(m => m.PRODUCT_CASE, new { @class = "form-conrol" })<hr />
+        @Html.LabelFor(m => m.PRODUCT_PRICE)<br />
+        @Html.TextBoxFor(m => m.PRODUCT_PRICE, new { @class = "form-conrol" })<hr />
+        <br />
+        <input type="file" name="PIC" />
+        <button class="btn btn-info">SAVE</button>
+        @Html.ActionLink("PRODUCT READ", "PRODUCTREAD", "PRODUCTREAD", "", new { @class = "btn btn-info" })
+        }
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Bizom.Models.Retailer>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Shop</title>
+    <style>
+        #BBB {
+            position: relative;
+            margin-bottom: 0px;
+            text-align:center                 
+        }
+
+        #AAA {
+            position: sticky;
+            top: 0px;
+            height:100px;
+            z-index:2;
+            
+        }
+
+        li {
+            display: inline-block;
+            margin: 25px;
+        }
+    </style>
+</head>
+<body>@Html.Raw(@TempData["MSG"])
+    <div class="container " id="AAA" style="background-color:lightskyblue">
+        <ul>
+            <li>@Html.ActionLink("MONDAY", "Shop", "Shop", new { @day = "MONDAY" }, "")_(@ViewBag.co)</li>
+            <li>@Html.ActionLink("TUESDAY", "Shop", "Shop", new { @day = "TUESDAY" }, "")_(@ViewBag.co)</li>
+            <li>@Html.ActionLink("WEDNESDAY", "Shop", "Shop", new { @day = "WEDNESDAY" }, "")_(@ViewBag.co)</li>
+            <li>@Html.ActionLink("THURSDAY", "Shop", "Shop", new { @day = "THURSDAY" }, "")_(@ViewBag.co)</li>
+            <li>@Html.ActionLink("FRIDAY ", "Shop", "Shop", new { @day = "FRIDAY" }, "")_(@ViewBag.co)</li>
+            <li>@Html.ActionLink("SATURDAY ", "Shop", "Shop", new { @day = "SATURDAY" }, "")_(@ViewBag.co)</li>
+
+            <li>
+               @Html.ActionLink("CREATE", "Create", "Create", "", new { @style = " btn btn-success; background-color:bisque; border-radius:50%;display:inline-block;width:60px;height:60px; text-align:center; color:black;" })
+            </li>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <li>
+                    @Html.ActionLink("PRODUCT", "PRODUCTCREATION", "PRODUCTCREATION", "", new { @class = " btn btn-success" })
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="container w-50" id="BBB">
+
+        @foreach (var item in Model)
+        {
+            <div class="container w-50 m-2 " style="background-color:bisque">
+                
+                <a href="@Url.Action("stock", "stock")">SHOP ID: @item.Retailer_Id</a>
+                <br />
+                <a href="@Url.Action("Stock", "Stock",item.Outlet_Name)">SHOP NAME :@item.Outlet_Name</a>
+                <br />
+                <img src="~/Image/@item.Outlet_Image" width="100" height="100" />
+                <hr />
+            </div>
+        }
+    </div>
+</body>
+</html>

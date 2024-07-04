@@ -1,0 +1,39 @@
+﻿@model Bizom.Models.Retailer
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Create</title>
+</head>
+<body>
+
+    <div class="container w-50">
+       
+        @using (@Html.BeginForm("Create", "Create", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.LabelFor(b => b.Select_Beat)<br />
+            @Html.DropDownListFor(b => b.Select_Beat, new SelectList(Enum.GetValues(typeof(Bizom.Models.Fields))), "-SELECT-")<hr />
+            @Html.LabelFor(b => b.Outlet_Types)<br />
+            @Html.DropDownListFor(b => b.Outlet_Types, new SelectList(Enum.GetValues(typeof(Bizom.Models.types))), "-SELECT-")<hr />
+            @Html.LabelFor(b => b.Outlet_Name)
+            @Html.TextBoxFor(b => b.Outlet_Name, new { @class = "form-control" })<hr />
+            @Html.LabelFor(b => b.Outlet_Address)
+            @Html.TextBoxFor(b => b.Outlet_Address, new { @class = "form-control" })<hr />
+            @Html.LabelFor(b => b.Owner_Name)
+            @Html.TextBoxFor(b => b.Owner_Name, new { @class = "form-control" })<hr />
+            @Html.LabelFor(b => b.Owner_Nunmer)
+            @Html.TextBoxFor(b => b.Owner_Nunmer, new { @class = "form-control" })<hr />
+            @Html.LabelFor(b=>b.EMAIL)
+            @Html.TextBoxFor(b => b.EMAIL, new { @class="form-control"})<hr />
+            <br />
+            <input type="file" name="pic" />
+            <button class="btn btn-success w-25">Save</button>
+            @Html.ActionLink("Back To Shop", "Shop", "Shop", "", new { @class = "btn btn-info" })
+        }
+    </div>
+    @Html.ValidationSummary(false)
+</body>
+</html>

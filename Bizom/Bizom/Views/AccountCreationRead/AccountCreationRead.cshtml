@@ -1,0 +1,33 @@
+﻿
+@model IEnumerable<Bizom.Models.AccountCreation>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>AccountCreationRead</title>
+</head>
+<body>
+    <div class="container w-50"> 
+        <table class="table table-bordered table-striped text-center">
+            <tr>
+                <th>ID</th>
+                <th>USER NAME</th>
+                <th>PASSWORD</th>
+                <th>ROLES</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CREATERE_Id</td>
+                    <td>@item.CREATERE_USERNAME</td>
+                    <td>@item.CREATERE_PASSWORD</td>
+                    <td>@item.Roles</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

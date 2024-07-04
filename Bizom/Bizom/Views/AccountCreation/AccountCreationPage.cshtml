@@ -1,0 +1,36 @@
+﻿@model Bizom.Models.AccountCreation
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <title>AccountCreationPage</title>
+</head>
+<body>
+    <div class="container w-50 text-center mt-5">
+        <div class=" w-50 m-3 bg-danger bg-opacity-25 rounded-3 p-3 text-black  ">
+            @using (@Html.BeginForm())
+            {
+                @Html.LabelFor(m => m.CREATERE_USERNAME, "USER NAME")<br />
+                @Html.TextBoxFor(m => m.CREATERE_USERNAME, new { @class = "from-control m-3", @placeholder = "User Name" })<br />
+                @Html.LabelFor(m => m.CREATERE_PASSWORD, "PASS WORD")<br />
+                @Html.TextBoxFor(m => m.CREATERE_PASSWORD, new { @class = "from-control m-3", @placeholder = "Pass Word", @type = "password", @id = "PDS" })<br />
+                <input type="checkbox" /><span>Show PassWord</span><br />
+                @Html.LabelFor(m => m.Roles)<br />
+                @Html.DropDownListFor(m => m.Roles, new SelectList(Enum.GetValues(typeof(Bizom.Models.roles))), "-SELECT-")
+                <button class="btn btn-success">Login</button>
+            }
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("input").click(function () {
+                $("#PDS").attr('type', $(this).is(':Checked') ? "text" : "password");
+            })
+        });
+    </script>
+</body>
+</html>

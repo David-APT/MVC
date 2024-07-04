@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Bizom.Models.product>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Stock</title>
+</head>
+<body>
+    <div class="w-25">
+        @using (@Html.BeginForm())
+        {
+            <label>Category Search</label>
+            @Html.DropDownList("accountid", new SelectList(ViewBag.Cat), "--Select Catagory--", new { @class = "form-select", @placeholder = "Search Category" })
+            @*@Html.TextBox("accountid","",new { @class = "form-control", @placeholder = "Search Category"})*@
+            <button>Search</button>
+        }
+    </div>
+    
+            <div class="container w-50  text-center">
+                @foreach (var item in Model)
+                {
+                    <div class="container" style="font-size:20px ">
+                        PRODUCT ID : @item.product_id
+                        <img src="~/PRODUCT IMAGE/@item.PRODUCT_IMAGE" width="100" height="100" />
+                        <br />
+                        NAME : @item.PRODUCT_NAME &nbsp; (@item.PRODUCT_MAR) &nbsp;(@item.PRODUCT_CASE )&nbsp; (@Math.Round(@item.PRODUCT_PRICE,2))<br />
+
+                        CASE  : <input type="text" @item.CASE name="AAA" /> <br /><br /> UNIT : <input type="text" @item.UNIT name="BBB" /> <hr />
+                    </div>
+                }
+            </div>
+      
+      
+</body>
+</html>

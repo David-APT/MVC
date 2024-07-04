@@ -1,0 +1,81 @@
+﻿@model PagedList.IPagedList<Bizom.Models.Retailer>
+@using PagedList.Mvc;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Read</title>
+    <style>
+        div {
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="@Url.Action("DOWNLOADEXCEL", "CUSTOMEREXCEL")">DOWNLOAD</a>
+        <br />
+        @using (@Html.BeginForm("IMPORTEXCEL", "CUSTOMEREXCEL", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="customer" />
+            <button>UPLOAD</button>
+        }
+    </div>
+    <strong>No.of.Retailer</strong><span class="badge bg-danger">@ViewBag.Co</span>
+    <div class="container w-75 ">
+        <table class="table table-bordered table-striped text-center ">
+            <tr>
+                <th>RETAILER ID</th>
+                <th>SELECT BEAT</th>
+                <th>OUTLET TYPE</th>
+                <th>OUTLET NAME</th>
+                <th>OUTLET ADDRESS</th>
+                <th>OWNER NAME</th>
+                <th>OWNER NUMBER</th>
+                <th>OUTLET IMAGE</th>
+                <th>UPADATE/DELETE</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.Retailer_Id</th>
+                    <th>@item.Select_Beat</th>
+                    <th>@item.Outlet_Types</th>
+                    <th>@item.Outlet_Name</th>
+                    <th>@item.Outlet_Address</th>
+                    <th>@item.Owner_Name</th>
+                    <th>@item.Owner_Nunmer</th>
+                    <th>
+                        <img src="~/PRODUCT IMAGE/@item.Outlet_Image" width="100" height="100"/>
+                    </th>
+                    <th>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Update", "Update", "Update", new { @id = item.Retailer_Id }, new{ @class = "btn btn-warning",
+                            @onclick = "return confirm('are sure do UPDATE this record')"})
+                            
+                            @Html.ActionLink("Delete", "Delete", "Delete", new { @id = item.Retailer_Id }, new{ @class = "btn btn-warning",
+                            @onclick = "return confirm('are sure do delete this record')"})
+                        }
+                        else if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
+                        {
+                            @Html.ActionLink("Update", "Update", "Update", new { @id = item.Retailer_Id }, new{ @class = "btn btn-warning",
+                           @onclick = "return confirm('are sure do UPDATE this record')"})
+                        }
+                    </th>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="page-item text-center">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Read", new { page }))
+
+    </div>
+</body>
+</html>
