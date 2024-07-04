@@ -27,6 +27,7 @@ namespace Bizom.Models
         public string CREATERE_PASSWORD { get; set; }
         [Required]
         public string Roles { get; set; }
+        public string status { get; set; }
     }
     public class Retailer
     {

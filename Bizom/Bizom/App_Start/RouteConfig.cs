@@ -14,8 +14,8 @@ namespace Bizom
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: " ",
+                name: "Default1",
+                url: "",
                 defaults: new { controller = "Login", action = "Login", id = UrlParameter.Optional }
             );
 

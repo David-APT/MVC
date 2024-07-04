@@ -17,6 +17,7 @@
                 <th>USER NAME</th>
                 <th>PASSWORD</th>
                 <th>ROLES</th>
+                <th>Action</th>
             </tr>
             @foreach (var item in Model)
             {
@@ -25,6 +26,7 @@
                     <td>@item.CREATERE_USERNAME</td>
                     <td>@item.CREATERE_PASSWORD</td>
                     <td>@item.Roles</td>
+                    <td>@Html.ActionLink("Active","Activate","AccountCreationRead",new { @i=item.CREATERE_Id},"")</td>
                 </tr>
             }
         </table>
